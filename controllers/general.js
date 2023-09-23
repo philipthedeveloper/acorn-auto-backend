@@ -24,7 +24,7 @@ export const sendEmail = async (req, res) => {
 export const createEmail = async (req, res) => {
   const { email } = req.body;
   if (!email) throw createBadRequestError("Please provide email");
-  cons = await Email.create({ email });
+  const formEmail = await Email.create({ email });
   return res
     .status(StatusCodes.CREATED)
     .json({ success: true, formEmail, message: "Email created" });
