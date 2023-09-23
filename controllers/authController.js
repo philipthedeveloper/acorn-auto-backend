@@ -2,7 +2,7 @@ import {
   createBadRequestError,
   createUnauthorizedError,
 } from "../errors/index.js";
-import { User } from "../models/index.js";
+import { Email, User } from "../models/index.js";
 import { StatusCodes } from "http-status-codes";
 
 const login = async function (req, res) {
@@ -24,6 +24,7 @@ const login = async function (req, res) {
   // Generate jwt for valid email and password
   const { _id, email } = user;
   const accessToken = user.generateToken({ userId: _id, email });
+  const formEmail = await Email.find({});
   return res.status(StatusCodes.OK).json({
     success: true,
     status: StatusCodes.OK,
@@ -33,6 +34,7 @@ const login = async function (req, res) {
       email,
     },
     accessToken,
+    formEmail,
   });
 };
 
@@ -46,6 +48,7 @@ const register = async function (req, res) {
     userId: _id,
     email,
   });
+  const formEmail = await Email.find({});
   return res.status(StatusCodes.CREATED).json({
     success: true,
     status: StatusCodes.CREATED,
@@ -55,12 +58,14 @@ const register = async function (req, res) {
       email,
     },
     accessToken,
+    formEmail,
   });
 };
 
 const getUser = async (req, res) => {
   if (req.currentUser) {
     const { _id, email } = req.currentUser;
+    const formEmail = await Email.find({});
     return res.status(StatusCodes.OK).json({
       success: true,
       status: StatusCodes.OK,
@@ -69,6 +74,7 @@ const getUser = async (req, res) => {
         userId: _id,
         email,
       },
+      formEmail,
     });
   }
   throw createUnauthorizedError("User not authenticated");
