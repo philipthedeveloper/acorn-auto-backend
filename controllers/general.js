@@ -1,4 +1,7 @@
+import { StatusCodes } from "http-status-codes";
+import { createBadRequestError } from "../errors/BadRequest.js";
 import emailSender from "../helpers/email-sender.js";
+import { Email } from "../models/index.js";
 
 export const sendEmail = async (req, res) => {
   const text = req.body.heading || "New email for your business";
@@ -16,4 +19,13 @@ export const sendEmail = async (req, res) => {
     text,
     res,
   });
+};
+
+export const createEmail = async (req, res) => {
+  const { email } = req.body;
+  if (!email) throw createBadRequestError("Please provide email");
+  const newEmail = await Email.create({ email });
+  return res
+    .status(StatusCodes.CREATED)
+    .json({ success: true, email: newEmail, message: "Email created" });
 };
