@@ -1,0 +1,41 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Acorn Tire & Autos</title>
+  </head>
+  <body>
+    {{#with body}}
+      <h1>A customer just request for a quoe</h1>
+      <h2>Services: </h2>
+      <ul>
+        {{#each serviceType}}
+          <h4><li>{{this}}</li></h4>
+        {{/each}}
+      </ul>
+      <h2>Vehicle Information</h2>
+      <ul>
+        {{!-- {{#with body}} --}}
+        <h4><li>Year: {{year}}</li></h4>
+        <h4><li>Make: {{make}}</li></h4>
+        <h4><li>Model: {{model}}</li></h4>
+        {{!-- {{/with}} --}}
+      </ul>
+      <h2>Personal Information</h2>
+      <ul>
+        {{!-- {{#with body}} --}}
+        <h4><li>First Name: {{firstName}}</li></h4>
+        <h4><li>Last Name: {{lastName}}</li></h4>
+        <h4><li>Email: {{email}}</li></h4>
+        <h4><li>Phone Number: {{phoneNumber}}</li></h4>
+        <h4><li>Address: {{address}}</li></h4>
+        <h4><li>City: {{city}}</li></h4>
+        <h4><li>State: {{state}}</li></h4>
+        <h4><li>Zip Code: {{zipCode}}</li></h4>
+        <h4><li>Comment: {{comment}}</li></h4>
+        <h4><li>Send Emails and Promo: {{sendEmailsAndPromo}}</li></h4>
+      </ul>
+    {{/with}}
+  </body>
+</html>

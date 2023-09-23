@@ -1,0 +1,48 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Acorn Tire & Autos</title>
+  </head>
+  <body>
+    <h1>A customer just tried to contact you</h1>
+    <h2>Service Explanation</h2>
+    <ul>
+      {{#with body}}
+        <h4><li>Service Type: {{serviceType}}</li></h4>
+        <h4><li>Message: {{message}}</li></h4>
+      {{/with}}
+    </ul>
+    <h2>Vehicle Information</h2>
+    <ul>
+      {{#with body}}
+        <h4><li>Year: {{year}}</li></h4>
+        <h4><li>Make: {{make}}</li></h4>
+        <h4><li>Model: {{model}}</li></h4>
+      {{/with}}
+    </ul>
+    <h2>Appointment Details</h2>
+    <ul>
+      {{#with body}}
+        <h4><li>Service Location: {{serviceLocation}}</li></h4>
+        <h4><li>First Appointment Date: {{firstAppointmentDate}}</li></h4>
+        <h4><li>Second Appointment Date: {{secondAppointmentDate}}</li></h4>
+        <h4><li>Will you wait while we work?: {{staying}}</li></h4>
+      {{/with}}
+    </ul>
+    <h2>Personal Information</h2>
+    <ul>
+      {{#with body}}
+        <h4><li>Full Name: {{fullName}}</li></h4>
+        <h4><li>Email: {{email}}</li></h4>
+        <h4><li>Phone Number: {{tel}}</li></h4>
+        <h4><li>Street Address: {{streetAddress}}</li></h4>
+        <h4><li>City: {{city}}</li></h4>
+        <h4><li>State: {{state}}</li></h4>
+        <h4><li>Zip Code: {{zipCode}}</li></h4>
+        <h4><li>How do you prefer to be contacted?: {{contactThrough}}</li></h4>
+      {{/with}}
+    </ul>
+  </body>
+</html>

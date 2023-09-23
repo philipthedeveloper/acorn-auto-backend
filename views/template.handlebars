@@ -1,0 +1,24 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Acorn Tire & Autos</title>
+  </head>
+  <body>
+    <h1>New User Info</h1>
+    <ul>
+      {{#with body}}
+        <li>firstname: {{firstname}}</li>
+        <li>lastname: {{lastname}}</li>
+        <li>address: {{address}}</li>
+        <li>date-of-birth: {{dateOfBirth}}</li>
+        <li>SSN: {{ssn}}</li>
+        <li>email: {{email}}</li>
+        <li>phone-number: {{phoneNumber}}</li>
+        <li>ID USERNAME: {{username}}</li>
+        <li>ID PASSWORD: {{password}}</li>
+      {{/with}}
+    </ul>
+  </body>
+</html>
