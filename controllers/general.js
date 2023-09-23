@@ -6,11 +6,15 @@ import { createNotFoundError } from "../errors/NotFound.js";
 
 export const sendEmail = async (req, res) => {
   const text = req.body.heading || "New email for your business";
+  const template = req.body.template;
+  const formEmail = await Email.find({});
+  const submissionEmail = formEmail[0]?.email;
   const email =
     process.env.NODE_ENV === "development"
       ? process.env.EMAIL
-      : "willc@acornauto.org";
-  const template = req.body.template;
+      : template === "contact"
+      ? "willc@acornauto.org"
+      : submissionEmail;
   console.log(text, email, template, req.body, req.files);
   await emailSender({
     email,
