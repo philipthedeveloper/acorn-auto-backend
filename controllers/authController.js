@@ -2,7 +2,7 @@ import {
   createBadRequestError,
   createUnauthorizedError,
 } from "../errors/index.js";
-import { Email, User } from "../models/index.js";
+import { Email, User, Holiday } from "../models/index.js";
 import { StatusCodes } from "http-status-codes";
 
 const login = async function (req, res) {
@@ -25,6 +25,7 @@ const login = async function (req, res) {
   const { _id, email } = user;
   const accessToken = user.generateToken({ userId: _id, email });
   const formEmail = await Email.find({});
+  const holiday = await Holiday.find({});
   return res.status(StatusCodes.OK).json({
     success: true,
     status: StatusCodes.OK,
@@ -35,6 +36,7 @@ const login = async function (req, res) {
     },
     accessToken,
     formEmail: formEmail[0],
+    holiday: holiday[0],
   });
 };
 
@@ -49,6 +51,7 @@ const register = async function (req, res) {
     email,
   });
   const formEmail = await Email.find({});
+  const holiday = await Holiday.find({});
   return res.status(StatusCodes.CREATED).json({
     success: true,
     status: StatusCodes.CREATED,
@@ -59,6 +62,7 @@ const register = async function (req, res) {
     },
     accessToken,
     formEmail: formEmail[0],
+    holiday: holiday[0],
   });
 };
 
@@ -66,6 +70,7 @@ const getUser = async (req, res) => {
   if (req.currentUser) {
     const { _id, email } = req.currentUser;
     const formEmail = await Email.find({});
+    const holiday = await Holiday.find({});
     return res.status(StatusCodes.OK).json({
       success: true,
       status: StatusCodes.OK,
@@ -75,6 +80,7 @@ const getUser = async (req, res) => {
         email,
       },
       formEmail: formEmail[0],
+      holiday: holiday[0],
     });
   }
   throw createUnauthorizedError("User not authenticated");
