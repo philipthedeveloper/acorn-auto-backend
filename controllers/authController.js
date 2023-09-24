@@ -34,7 +34,7 @@ const login = async function (req, res) {
       email,
     },
     accessToken,
-    formEmail,
+    formEmail: formEmail[0],
   });
 };
 
@@ -58,7 +58,7 @@ const register = async function (req, res) {
       email,
     },
     accessToken,
-    formEmail,
+    formEmail: formEmail[0],
   });
 };
 
@@ -74,7 +74,7 @@ const getUser = async (req, res) => {
         userId: _id,
         email,
       },
-      formEmail,
+      formEmail: formEmail[0],
     });
   }
   throw createUnauthorizedError("User not authenticated");
