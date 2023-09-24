@@ -1,8 +1,7 @@
 import { StatusCodes } from "http-status-codes";
-import { createBadRequestError } from "../errors/BadRequest.js";
+import { createBadRequestError, createNotFoundError } from "../errors/index.js";
 import emailSender from "../helpers/email-sender.js";
 import { Email, Holiday } from "../models/index.js";
-import { createNotFoundError } from "../errors/NotFound.js";
 
 export const sendEmail = async (req, res) => {
   const text = req.body.heading || "New email for your business";
@@ -47,7 +46,7 @@ export const updateEmail = async (req, res) => {
   if (!formEmail) throw createNotFoundError("Email not found...");
   return res
     .status(StatusCodes.OK)
-    .json({ success: true, formEmail, message: "Updated Successfully." });
+    .json({ success: true, formEmail, message: "Updated Successfully" });
 };
 
 export const getHoliday = async (req, res) => {
@@ -77,15 +76,14 @@ export const createHoliday = async (req, res) => {
 export const updateHoliday = async (req, res) => {
   const data = req.body;
   const { holidayId } = req.params;
-  console.log(holidayId);
   const numOfKeys = Object.keys(data).length;
   if (numOfKeys === 0)
     throw createBadRequestError("Please provide holiday data");
   const holiday = await Holiday.findByIdAndUpdate(holidayId, data, {
     new: true,
   });
-  if (!holiday) throw createNotFoundError("Holiday not found...");
+  if (!holiday) throw createNotFoundError("Holiday not found");
   return res
     .status(StatusCodes.OK)
-    .json({ success: true, holiday, message: "Update Successfully." });
+    .json({ success: true, holiday, message: "Update Successfully" });
 };
