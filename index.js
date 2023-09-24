@@ -3,7 +3,7 @@ import express from "express";
 import cors from "cors";
 import multer from "multer";
 import dotenv from "dotenv";
-import { authRouter, generalRouter } from "./router/index.js";
+import { authRouter, generalRouter, careerRouter } from "./router/index.js";
 import {
   routeNotFound,
   errorHandler,
@@ -48,6 +48,7 @@ app.use(requestLogger); // Log any incoming request to the console
 
 app.use("/", generalRouter);
 app.use("/auth", authRouter);
+app.use("/career", careerRouter);
 // All route that are not handled from the top will be handled here
 app.all("*", routeNotFound); // Returns a 404 response for such routes
 app.use(errorHandler); // Handles all error in the app
