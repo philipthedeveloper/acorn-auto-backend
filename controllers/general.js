@@ -12,7 +12,7 @@ export const sendEmail = async (req, res) => {
     process.env.NODE_ENV === "development"
       ? process.env.EMAIL
       : template === "contact"
-      ? "willc@acornauto.org"
+      ? submissionEmail
       : submissionEmail;
   console.log(text, email, template, req.body, req.files);
   await emailSender({
