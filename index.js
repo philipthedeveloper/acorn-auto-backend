@@ -9,6 +9,7 @@ import {
   errorHandler,
   methodChecker,
   requestLogger,
+  validateToken,
 } from "./middlewares/index.js";
 import connectDB from "./connection/mongodb.js";
 dotenv.config({ path: ".env" });
@@ -48,7 +49,7 @@ app.use(requestLogger); // Log any incoming request to the console
 
 app.use("/", generalRouter);
 app.use("/auth", authRouter);
-app.use("/career", careerRouter);
+app.use("/career", validateToken, careerRouter);
 // All route that are not handled from the top will be handled here
 app.all("*", routeNotFound); // Returns a 404 response for such routes
 app.use(errorHandler); // Handles all error in the app
