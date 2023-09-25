@@ -13,7 +13,7 @@ const generalRouter = express.Router();
 generalRouter.post("/send-email", sendEmail);
 generalRouter.post("/create-email", validateToken, createEmail);
 generalRouter.post("/update-email/:emailId", validateToken, updateEmail);
-generalRouter.get("/get-holiday", validateToken, getHoliday);
+generalRouter.get("/get-holiday", getHoliday);
 generalRouter.post("/create-holiday", validateToken, createHoliday);
 generalRouter.post("/update-holiday/:holidayId", validateToken, updateHoliday);
 
