@@ -21,7 +21,11 @@ const HOSTNAME = process.env.HOST;
 
 app.use(
   cors({
-    origin: ["http://localhost:5173", "http://192.168.137.1:5173"],
+    origin: [
+      "http://localhost:5173",
+      "http://192.168.137.1:5173",
+      process.env.CORS_ORIGIN,
+    ],
     credentials: true,
   })
 );
