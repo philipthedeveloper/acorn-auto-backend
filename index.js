@@ -53,7 +53,7 @@ app.use(requestLogger); // Log any incoming request to the console
 
 app.use("/", generalRouter);
 app.use("/auth", authRouter);
-app.use("/career", validateToken, careerRouter);
+app.use("/career", careerRouter);
 // All route that are not handled from the top will be handled here
 app.all("*", routeNotFound); // Returns a 404 response for such routes
 app.use(errorHandler); // Handles all error in the app
