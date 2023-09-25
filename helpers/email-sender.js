@@ -5,13 +5,19 @@ import dotenv from "dotenv";
 import { StatusCodes } from "http-status-codes";
 dotenv.config();
 
+const NODE_ENV = process.env.NODE_ENV;
+
 let transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
   port: 587,
   requireTLS: true,
   auth: {
-    user: process.env.EMAIL,
-    pass: process.env.SMTPPASS,
+    user:
+      NODE_ENV === "development" ? process.env.EMAIL : process.env.PROD_EMAIL,
+    pass:
+      NODE_ENV === "development"
+        ? process.env.SMTPPASS
+        : process.env.PROD_SMTPPASS,
   },
 });
 
