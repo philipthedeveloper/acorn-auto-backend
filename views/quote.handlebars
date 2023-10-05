@@ -22,6 +22,15 @@
         <h4><li>Model: {{model}}</li></h4>
         {{!-- {{/with}} --}}
       </ul>
+      <h2>Appointment Details</h2>
+      <ul>
+        {{#with body}}
+          <h4><li>Service Location: {{serviceLocation}}</li></h4>
+          <h4><li>First Appointment Date: {{firstAppointmentDate}}</li></h4>
+          <h4><li>Second Appointment Date: {{secondAppointmentDate}}</li></h4>
+          <h4><li>Will you wait while we work?: {{staying}}</li></h4>
+        {{/with}}
+      </ul>
       <h2>Personal Information</h2>
       <ul>
         {{!-- {{#with body}} --}}
