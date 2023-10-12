@@ -11,6 +11,11 @@ const CareerSchema = new mongoose.Schema(
       type: String,
       required: [true, "Please provide career link"],
     },
+    shopLocation: {
+      type: String,
+      required: [true, "Please provide shop location"],
+      trim: true,
+    },
   },
   { timestamps: true }
 );

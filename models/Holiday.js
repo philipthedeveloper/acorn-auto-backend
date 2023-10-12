@@ -12,6 +12,11 @@ const HolidaySchema = new mongoose.Schema(
       required: [true, "Please provide holiday date"],
       trim: true,
     },
+    shopLocation: {
+      type: String,
+      required: [true, "Please provide shop location"],
+      trim: true,
+    },
   },
   { timestamps: true }
 );
