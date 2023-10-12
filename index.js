@@ -18,13 +18,15 @@ const PORT = process.env.PORT;
 const HOSTNAME = process.env.HOST;
 
 // Middlewares
-
+const corsOrigins = process.env.CORS_ORIGIN
+  ? process.env.CORS_ORIGIN.split(",")
+  : [];
 app.use(
   cors({
     origin: [
       "http://localhost:5173",
       "http://192.168.137.1:5173",
-      process.env.CORS_ORIGIN,
+      ...corsOrigins,
     ],
     credentials: true,
   })
