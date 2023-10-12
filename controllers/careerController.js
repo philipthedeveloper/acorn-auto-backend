@@ -14,7 +14,12 @@ export const createCareer = async (req, res) => {
 };
 
 export const getAllCareers = async (req, res) => {
-  const careers = await Career.find({});
+  const { shopLocation } = req.query;
+  let queryObject = {};
+  if (shopLocation) {
+    queryObject.shopLocation = shopLocation;
+  }
+  const careers = await Career.find(queryObject);
   return res
     .status(StatusCodes.OK)
     .json({ success: true, careers, nbHits: careers.length });
