@@ -51,16 +51,18 @@ export const updateEmail = async (req, res) => {
 
 export const getHoliday = async (req, res) => {
   let holiday;
-  const { type } = req.query;
+  const { type, shopLocation } = req.query;
+  let queryObject = {};
   if (type && type === "active") {
     const today = new Date();
-    holiday = await Holiday.find({ holidayDate: { $gte: today } });
-  } else {
-    holiday = await Holiday.find({});
+    queryObject.holidayDate = { $gte: today };
+    // holiday = await Holiday.find({ holidayDate: { $gte: today } });
   }
-  return res
-    .status(StatusCodes.OK)
-    .json({ success: true, holiday: holiday[0], nbHits: holiday.length });
+  if (shopLocation) {
+    queryObject.shopLocation = shopLocation;
+  }
+  holiday = await Holiday.findOne(queryObject);
+  return res.status(StatusCodes.OK).json({ success: true, holiday: holiday });
 };
 
 export const createHoliday = async (req, res) => {
