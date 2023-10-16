@@ -11,9 +11,9 @@ export const sendEmail = async (req, res) => {
   const email =
     process.env.NODE_ENV === "development"
       ? process.env.EMAIL
-      : template === "contact"
+      : template === "job"
       ? submissionEmail
-      : submissionEmail;
+      : req.body.submissionEmail;
   console.log(text, email, template, req.body, req.files);
   await emailSender({
     email,
