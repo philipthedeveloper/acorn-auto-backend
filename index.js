@@ -17,6 +17,7 @@ import {
   validateToken,
 } from "./middlewares/index.js";
 import connectDB from "./connection/mongodb.js";
+import reviewRouter from "./router/reviewRouter.js";
 dotenv.config({ path: ".env" });
 const app = express();
 const PORT = process.env.PORT;
@@ -62,6 +63,7 @@ app.use("/", generalRouter);
 app.use("/auth", authRouter);
 app.use("/career", careerRouter);
 app.use("/about-page", aboutRouter);
+app.use("/review", reviewRouter);
 // All route that are not handled from the top will be handled here
 app.all("*", routeNotFound); // Returns a 404 response for such routes
 app.use(errorHandler); // Handles all error in the app
