@@ -8,6 +8,7 @@ import {
   generalRouter,
   careerRouter,
   aboutRouter,
+  newsRouter,
 } from "./router/index.js";
 import {
   routeNotFound,
@@ -64,6 +65,7 @@ app.use("/auth", authRouter);
 app.use("/career", careerRouter);
 app.use("/about-page", aboutRouter);
 app.use("/review", reviewRouter);
+app.use("/news", newsRouter);
 // All route that are not handled from the top will be handled here
 app.all("*", routeNotFound); // Returns a 404 response for such routes
 app.use(errorHandler); // Handles all error in the app
