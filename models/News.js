@@ -27,7 +27,12 @@ const NewsSchema = new mongoose.Schema(
   {
     title: {
       type: String,
-      required: [true, "Please provide news tile"],
+      required: [true, "Please provide news title"],
+      trim: true,
+    },
+    author: {
+      type: String,
+      required: [true, "Please provide news author"],
       trim: true,
     },
     imgUrl: {
