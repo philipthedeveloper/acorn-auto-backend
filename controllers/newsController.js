@@ -16,14 +16,17 @@ export const getAllNews = async (req, res) => {
   const limit = Number(req.query.limit) || 10;
   const skip = (page - 1) * limit;
 
-  const news = News.find(queryObject).limit(limit).skip(skip);
+  let news = await News.find(queryObject)
+    .limit(limit)
+    .skip(skip)
+    .sort("createdAt");
 
-  if (sort) {
-    const sortList = sort.split(",").join(" ");
-    news = news.sort(sortList);
-  } else {
-    news = news.sort("createdAt");
-  }
+  // if (sort) {
+  //   const sortList = sort.split(",").join(" ");
+  //   news = news.sort(sortList);
+  // } else {
+  //   news = news.sort("createdAt");
+  // }
 
   return sendSuccessResponse(res, { news, nbHits: news.length });
 };
